@@ -96,14 +96,14 @@ local selectButtonInPlusFrame = nil
 local selectModeActive = false
 local colorListLabelInPlusFrame = nil
 local mouseClickConnection = nil
-local selectedBrickColor = nil -- Variable to store the selected BrickColor
+local selectedBrickColor = nil 
 
 local wallhopToggle = false
-local InfiniteJumpEnabled = true -- Debounce for non-button jumps (manual and auto)
+local InfiniteJumpEnabled = true 
 local raycastParams = RaycastParams.new()
 raycastParams.FilterType = Enum.RaycastFilterType.Blacklist
 local jumpConnection = nil
-local autoJumpConnection = nil -- Connection for the auto jump Heartbeat loop
+local autoJumpConnection = nil 
 
 local function getWallRaycastResult()
     local character = player.Character
@@ -142,10 +142,10 @@ local function getWallRaycastResult()
     return closestHit
 end
 
-local function executeWallJump(wallRayResult, jumpType) -- jumpType for debug print ("Manual", "Button", "Auto")
-    -- Skip debounce check ONLY for button-triggered jumps
+local function executeWallJump(wallRayResult, jumpType)
+    
     if jumpType ~= "Button" and not InfiniteJumpEnabled then
-        -- print("executeWallJump: Debounce active for non-button jump, type: " .. jumpType) -- Optional debug
+      
         return
     end
 
@@ -155,13 +155,12 @@ local function executeWallJump(wallRayResult, jumpType) -- jumpType for debug pr
     local camera = Workspace.CurrentCamera
 
     if not (humanoid and rootPart and camera and humanoid:GetState() ~= Enum.HumanoidStateType.Dead and wallRayResult) then
-        -- print("executeWallJump: Invalid state or no wall result.")
+    
         return
     end
 
-    -- Only disable debounce for non-button jumps
     if jumpType ~= "Button" then
-        InfiniteJumpEnabled = false -- Start debounce FOR non-button JUMPS
+        InfiniteJumpEnabled = false 
     end
 
     local maxInfluenceAngleRight = math.rad(20)
