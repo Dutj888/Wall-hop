@@ -436,3 +436,30 @@ jumpConnection = UserInputService.JumpRequest:Connect(function()
         executeWallJump(wallRayResult, "Manual")
     end
 end)
+
+local toggleVisible = true
+
+local function toggleMenu()
+	toggleVisible = not toggleVisible
+	if frame then
+		frame.Visible = toggleVisible
+	end
+end
+
+UserInputService.InputBegan:Connect(function(input, gameProcessed)
+	if gameProcessed then return end
+	if input.KeyCode == Enum.KeyCode.M then
+		toggleMenu()
+	end
+end)
+
+local phoneBtn = Instance.new("TextButton")
+phoneBtn.Parent = screenGui
+phoneBtn.Size = UDim2.new(0, 60, 0, 30)
+phoneBtn.Position = UDim2.new(1, -70, 0, 20)
+phoneBtn.Text = "Menu"
+phoneBtn.BackgroundColor3 = Color3.fromRGB(60, 60, 60)
+phoneBtn.TextColor3 = Color3.new(1, 1, 1)
+phoneBtn.Font = Enum.Font.SourceSans
+phoneBtn.TextSize = 14
+phoneBtn.MouseButton1Click:Connect(toggleMenu)
